@@ -6,6 +6,7 @@ import (
 
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
+	"github.com/DavidDSaputra/week4-golang-seeder/models"
 )
 
 var DB *gorm.DB
@@ -26,4 +27,7 @@ func InitDB() {
 	}
 
 	DB = database
+
+	// Auto migrate models
+	DB.AutoMigrate(&models.User{}, &models.Product{})
 }
