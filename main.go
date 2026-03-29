@@ -6,7 +6,7 @@ import (
 
 	"github.com/joho/godotenv"
 	"github.com/DavidDSaputra/week4-golang-seeder/config"
-	"github.com/gin-gonic/gin"
+	"github.com/DavidDSaputra/week4-golang-seeder/routes"
 )
 
 func main() {
@@ -16,13 +16,8 @@ func main() {
 	// Initialize database
 	config.InitDB()
 
-	// Create router
-	server := gin.Default()
-
-	// Test endpoint
-	server.GET("/ping", func(c *gin.Context) {
-		c.JSON(200, gin.H{"message": "ok"})
-	})
+	// Setup routes
+	server := routes.SetupRouter()
 
 	// Get port dari env atau default
 	port := os.Getenv("APP_PORT")
