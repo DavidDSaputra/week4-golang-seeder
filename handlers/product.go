@@ -34,3 +34,10 @@ func UpdateProduct(c *gin.Context) {
 
 	c.JSON(200, product)
 }
+
+func DeleteProduct(c *gin.Context) {
+	id := c.Param("id")
+	config.DB.Delete(&models.Product{}, id)
+
+	c.JSON(200, gin.H{"message": "deleted"})
+}
