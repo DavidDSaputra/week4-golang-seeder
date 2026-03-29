@@ -9,6 +9,7 @@ func SetupRouter() *gin.Engine {
 	r := gin.Default()
 
 	r.GET("/products", handlers.GetProducts)
+	r.GET("/products/:id", handlers.GetProductByID)
 	r.POST("/products", handlers.CreateProduct)
 	r.PUT("/products/:id", handlers.UpdateProduct)
 	r.DELETE("/products/:id", handlers.DeleteProduct)

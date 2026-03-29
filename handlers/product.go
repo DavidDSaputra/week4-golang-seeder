@@ -15,6 +15,15 @@ func GetProducts(c *gin.Context) {
 	c.JSON(http.StatusOK, products)
 }
 
+func GetProductByID(c *gin.Context) {
+	id := c.Param("id")
+
+	var product models.Product
+	config.DB.First(&product, id)
+
+	c.JSON(200, product)
+}
+
 func CreateProduct(c *gin.Context) {
 	var product models.Product
 	c.ShouldBindJSON(&product)
