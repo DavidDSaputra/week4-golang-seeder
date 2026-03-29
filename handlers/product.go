@@ -22,3 +22,15 @@ func CreateProduct(c *gin.Context) {
 	config.DB.Create(&product)
 	c.JSON(201, product)
 }
+
+func UpdateProduct(c *gin.Context) {
+	id := c.Param("id")
+
+	var product models.Product
+	config.DB.First(&product, id)
+
+	c.ShouldBindJSON(&product)
+	config.DB.Save(&product)
+
+	c.JSON(200, product)
+}
