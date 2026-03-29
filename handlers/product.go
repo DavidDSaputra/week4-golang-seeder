@@ -9,10 +9,17 @@ import (
 )
 
 func GetProducts(c *gin.Context) {
+	page := c.DefaultQuery("page", "1")
+	limit := c.DefaultQuery("limit", "10")
+
 	var products []models.Product
 	config.DB.Find(&products)
 
-	c.JSON(http.StatusOK, products)
+	c.JSON(http.StatusOK, gin.H{
+		"page":     page,
+		"limit":    limit,
+		"products": products,
+	})
 }
 
 func GetProductByID(c *gin.Context) {
