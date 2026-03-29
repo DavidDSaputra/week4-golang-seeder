@@ -14,3 +14,11 @@ func GetProducts(c *gin.Context) {
 
 	c.JSON(http.StatusOK, products)
 }
+
+func CreateProduct(c *gin.Context) {
+	var product models.Product
+	c.ShouldBindJSON(&product)
+
+	config.DB.Create(&product)
+	c.JSON(201, product)
+}
